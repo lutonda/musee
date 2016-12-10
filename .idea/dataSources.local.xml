@@ -2,7 +2,13 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="MySQL - museuDB_mysql@localhost" uuid="9be9fc86-527f-4207-a0dc-b26d3992dc76">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <database-info product="MySQL" version="5.6.30-1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <user-name>root</user-name>
+      <user-password>dfdbdfcbdfd9dfdd</user-password>
     </data-source>
   </component>
 </project>

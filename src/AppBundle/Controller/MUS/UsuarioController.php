@@ -25,6 +25,7 @@ class UsuarioController extends Controller
      */
     public function indexAction()
     {
+        phpinfo();
         $em = $this->getDoctrine()->getManager();
         $usuarios = new UsuarioRepositorio($em);
         $usuarios = $usuarios->mostrarTodos();
@@ -50,12 +51,12 @@ class UsuarioController extends Controller
         $form = $this->createForm('AppBundle\Application\MUS\UsuarioType', $usuario);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($usuario);
-            $em->flush($usuario);
+        if ($form->isSubmitted()) {
+            return $this->render('index.html.twig', [
+                'pagina' => "usuario/index.html.twig"
+            ]);
 
-            return $this->redirectToRoute('usuario_show', array('id' => $usuario->getId()));
+           // return $this->redirectToRoute('usuario_show', array('id' => $usuario->getId()));
         }
 
         return $this->render('index.html.twig', [
@@ -64,6 +65,7 @@ class UsuarioController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
 
     /**
      * Finds and displays a usuario entity.

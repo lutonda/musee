@@ -13,9 +13,20 @@ class PessoaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nome')->add('numero')->add('nivelacademico')->add('tipo')->add('genero')->add('estado')->add('datanacimento')->add('curso')->add('especialidade')->add('morada')->add('naturalidade')        ;
+        $builder->add('nome')
+            ->add('numero')
+            ->add('nivelacademico')
+            ->add('tipo')
+            ->add('genero')
+            ->add('estado')
+            ->add('datanacimento')
+            ->add('curso')
+            ->add('especialidade')
+            ->add('morada')
+            ->add('naturalidade');
+            ;
     }
-    
+
     /**
      * {@inheritdoc}
      */

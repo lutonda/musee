@@ -2,8 +2,13 @@
 <project version="4">
   <component name="PhpProjectServersManager">
     <servers>
-      <server host="127.0.0.1" id="69572aa8-7b29-4bc7-bcc6-7060c35afb36" name="debug" port="7000" />
+      <server host="127.0.0.1" id="69572aa8-7b29-4bc7-bcc6-7060c35afb36" name="debug" port="9000" />
     </servers>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7" />
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings load_method="CUSTOM_LOADER" />
+    </phpunit_settings>
+  </component>
 </project>

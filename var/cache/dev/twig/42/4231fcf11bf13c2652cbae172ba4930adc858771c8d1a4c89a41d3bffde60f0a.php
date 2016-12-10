@@ -15,8 +15,8 @@ class __TwigTemplate_04d6f586f008b1bb5488178b09bb9394d027501b09afe38cc868f9d9186
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_d26cd7421a04716e8b06baa6810b3cf452055c66b7fd457131abf492e0d19445 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_d26cd7421a04716e8b06baa6810b3cf452055c66b7fd457131abf492e0d19445->enter($__internal_d26cd7421a04716e8b06baa6810b3cf452055c66b7fd457131abf492e0d19445_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "inicio.html.twig"));
+        $__internal_641901244d5f80fd35a0b9074210ca2f55aeaedbf62fe27f8d7912004b93cc01 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_641901244d5f80fd35a0b9074210ca2f55aeaedbf62fe27f8d7912004b93cc01->enter($__internal_641901244d5f80fd35a0b9074210ca2f55aeaedbf62fe27f8d7912004b93cc01_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "inicio.html.twig"));
 
         // line 1
         echo "<div class=\"container-fluid main-content\">
@@ -432,7 +432,7 @@ class __TwigTemplate_04d6f586f008b1bb5488178b09bb9394d027501b09afe38cc868f9d9186
       </div>
 ";
         
-        $__internal_d26cd7421a04716e8b06baa6810b3cf452055c66b7fd457131abf492e0d19445->leave($__internal_d26cd7421a04716e8b06baa6810b3cf452055c66b7fd457131abf492e0d19445_prof);
+        $__internal_641901244d5f80fd35a0b9074210ca2f55aeaedbf62fe27f8d7912004b93cc01->leave($__internal_641901244d5f80fd35a0b9074210ca2f55aeaedbf62fe27f8d7912004b93cc01_prof);
 
     }
 

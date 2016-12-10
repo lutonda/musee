@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="weserver" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="debug">
+    <method />
+  </configuration>
+</component>
