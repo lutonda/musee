@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Medidas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Espessura</th>
+                <th>Altura</th>
+                <th>Comprimento</th>
+                <th>Largura</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medida in medidas %}
+            <tr>
+                <td><a href="{{ path('medida_show', { 'id': medida.id }) }}">{{ medida.id }}</a></td>
+                <td>{{ medida.espessura }}</td>
+                <td>{{ medida.altura }}</td>
+                <td>{{ medida.comprimento }}</td>
+                <td>{{ medida.largura }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('medida_show', { 'id': medida.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('medida_edit', { 'id': medida.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('medida_new') }}">Create a new medida</a>
+        </li>
+    </ul>
+{% endblock %}

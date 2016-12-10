@@ -1,0 +1,9 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+login:
+    path:     /login
+    defaults: { _controller: AppBundle:login:index }
+login_check:
+    path: /login_check

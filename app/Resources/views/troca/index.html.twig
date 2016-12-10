@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Trocas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Colaborador</th>
+                <th>Tipo</th>
+                <th>Descricao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for troca in trocas %}
+            <tr>
+                <td><a href="{{ path('troca_show', { 'id': troca.id }) }}">{{ troca.id }}</a></td>
+                <td>{{ troca.colaborador }}</td>
+                <td>{{ troca.tipo }}</td>
+                <td>{{ troca.descricao }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('troca_show', { 'id': troca.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('troca_edit', { 'id': troca.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('troca_new') }}">Create a new troca</a>
+        </li>
+    </ul>
+{% endblock %}

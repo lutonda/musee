@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Densidades list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>De</th>
+                <th>A</th>
+                <th>Descricao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for densidade in densidades %}
+            <tr>
+                <td><a href="{{ path('densidade_show', { 'id': densidade.id }) }}">{{ densidade.id }}</a></td>
+                <td>{{ densidade.de }}</td>
+                <td>{{ densidade.a }}</td>
+                <td>{{ densidade.descricao }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('densidade_show', { 'id': densidade.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('densidade_edit', { 'id': densidade.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('densidade_new') }}">Create a new densidade</a>
+        </li>
+    </ul>
+{% endblock %}

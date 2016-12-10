@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Requisitoinscricaos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Idadeinicial</th>
+                <th>Idadefinal</th>
+                <th>Genero</th>
+                <th>Nacionalidade</th>
+                <th>Grupo</th>
+                <th>Nivelacademico</th>
+                <th>Fechado</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for requisitoinscricao in requisitoinscricaos %}
+            <tr>
+                <td><a href="{{ path('requisitoinscricao_show', { 'id': requisitoinscricao.id }) }}">{{ requisitoinscricao.id }}</a></td>
+                <td>{{ requisitoinscricao.idadeinicial }}</td>
+                <td>{{ requisitoinscricao.idadefinal }}</td>
+                <td>{{ requisitoinscricao.genero }}</td>
+                <td>{{ requisitoinscricao.nacionalidade }}</td>
+                <td>{{ requisitoinscricao.grupo }}</td>
+                <td>{{ requisitoinscricao.nivelacademico }}</td>
+                <td>{{ requisitoinscricao.fechado }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('requisitoinscricao_show', { 'id': requisitoinscricao.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('requisitoinscricao_edit', { 'id': requisitoinscricao.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('requisitoinscricao_new') }}">Create a new requisitoinscricao</a>
+        </li>
+    </ul>
+{% endblock %}

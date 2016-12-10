@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Troca</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ troca.id }}</td>
+            </tr>
+            <tr>
+                <th>Colaborador</th>
+                <td>{{ troca.colaborador }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ troca.tipo }}</td>
+            </tr>
+            <tr>
+                <th>Descricao</th>
+                <td>{{ troca.descricao }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('troca_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('troca_edit', { 'id': troca.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

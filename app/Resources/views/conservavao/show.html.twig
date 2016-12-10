@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Conservavao</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ conservavao.id }}</td>
+            </tr>
+            <tr>
+                <th>Temperaturamin</th>
+                <td>{{ conservavao.temperaturamin }}</td>
+            </tr>
+            <tr>
+                <th>Temperaturamax</th>
+                <td>{{ conservavao.temperaturamax }}</td>
+            </tr>
+            <tr>
+                <th>Sensibilidadeluminosa</th>
+                <td>{% if conservavao.sensibilidadeluminosa %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('conservavao_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('conservavao_edit', { 'id': conservavao.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

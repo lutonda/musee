@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Requisitoinscricao</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ requisitoinscricao.id }}</td>
+            </tr>
+            <tr>
+                <th>Idadeinicial</th>
+                <td>{{ requisitoinscricao.idadeinicial }}</td>
+            </tr>
+            <tr>
+                <th>Idadefinal</th>
+                <td>{{ requisitoinscricao.idadefinal }}</td>
+            </tr>
+            <tr>
+                <th>Genero</th>
+                <td>{{ requisitoinscricao.genero }}</td>
+            </tr>
+            <tr>
+                <th>Nacionalidade</th>
+                <td>{{ requisitoinscricao.nacionalidade }}</td>
+            </tr>
+            <tr>
+                <th>Grupo</th>
+                <td>{{ requisitoinscricao.grupo }}</td>
+            </tr>
+            <tr>
+                <th>Nivelacademico</th>
+                <td>{{ requisitoinscricao.nivelacademico }}</td>
+            </tr>
+            <tr>
+                <th>Fechado</th>
+                <td>{{ requisitoinscricao.fechado }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('requisitoinscricao_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('requisitoinscricao_edit', { 'id': requisitoinscricao.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

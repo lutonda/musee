@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Elementoquimicos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Elemento</th>
+                <th>Simbolo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for elementoquimico in elementoquimicos %}
+            <tr>
+                <td><a href="{{ path('elementoquimico_show', { 'id': elementoquimico.id }) }}">{{ elementoquimico.id }}</a></td>
+                <td>{{ elementoquimico.elemento }}</td>
+                <td>{{ elementoquimico.simbolo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('elementoquimico_show', { 'id': elementoquimico.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('elementoquimico_edit', { 'id': elementoquimico.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('elementoquimico_new') }}">Create a new elementoquimico</a>
+        </li>
+    </ul>
+{% endblock %}

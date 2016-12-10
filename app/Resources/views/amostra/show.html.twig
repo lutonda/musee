@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Amostra</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ amostra.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ amostra.nome }}</td>
+            </tr>
+            <tr>
+                <th>Risca</th>
+                <td>{{ amostra.risca }}</td>
+            </tr>
+            <tr>
+                <th>Brilho</th>
+                <td>{{ amostra.brilho }}</td>
+            </tr>
+            <tr>
+                <th>Dureza</th>
+                <td>{{ amostra.dureza }}</td>
+            </tr>
+            <tr>
+                <th>Peso</th>
+                <td>{{ amostra.peso }}</td>
+            </tr>
+            <tr>
+                <th>Datacadastro</th>
+                <td>{% if amostra.datacadastro %}{{ amostra.datacadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Caraceristica</th>
+                <td>{{ amostra.caraceristica }}</td>
+            </tr>
+            <tr>
+                <th>Aplicacao</th>
+                <td>{{ amostra.aplicacao }}</td>
+            </tr>
+            <tr>
+                <th>Data</th>
+                <td>{% if amostra.data %}{{ amostra.data|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('amostra_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('amostra_edit', { 'id': amostra.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

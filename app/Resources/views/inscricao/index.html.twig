@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Inscricaos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Data</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for inscricao in inscricaos %}
+            <tr>
+                <td><a href="{{ path('inscricao_show', { 'id': inscricao.id }) }}">{{ inscricao.id }}</a></td>
+                <td>{% if inscricao.data %}{{ inscricao.data|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('inscricao_show', { 'id': inscricao.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('inscricao_edit', { 'id': inscricao.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('inscricao_new') }}">Create a new inscricao</a>
+        </li>
+    </ul>
+{% endblock %}

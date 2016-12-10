@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Participantegrupos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for participantegrupo in participantegrupos %}
+            <tr>
+                <td><a href="{{ path('participantegrupo_show', { 'id': participantegrupo.id }) }}">{{ participantegrupo.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('participantegrupo_show', { 'id': participantegrupo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('participantegrupo_edit', { 'id': participantegrupo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('participantegrupo_new') }}">Create a new participantegrupo</a>
+        </li>
+    </ul>
+{% endblock %}

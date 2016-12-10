@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Conservavaos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Temperaturamin</th>
+                <th>Temperaturamax</th>
+                <th>Sensibilidadeluminosa</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for conservavao in conservavaos %}
+            <tr>
+                <td><a href="{{ path('conservavao_show', { 'id': conservavao.id }) }}">{{ conservavao.id }}</a></td>
+                <td>{{ conservavao.temperaturamin }}</td>
+                <td>{{ conservavao.temperaturamax }}</td>
+                <td>{% if conservavao.sensibilidadeluminosa %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('conservavao_show', { 'id': conservavao.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('conservavao_edit', { 'id': conservavao.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('conservavao_new') }}">Create a new conservavao</a>
+        </li>
+    </ul>
+{% endblock %}

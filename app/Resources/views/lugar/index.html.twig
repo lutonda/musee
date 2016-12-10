@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lugars list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero</th>
+                <th>Descricao</th>
+                <th>Lotacao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lugar in lugars %}
+            <tr>
+                <td><a href="{{ path('lugar_show', { 'id': lugar.id }) }}">{{ lugar.id }}</a></td>
+                <td>{{ lugar.numero }}</td>
+                <td>{{ lugar.descricao }}</td>
+                <td>{{ lugar.lotacao }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('lugar_show', { 'id': lugar.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('lugar_edit', { 'id': lugar.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('lugar_new') }}">Create a new lugar</a>
+        </li>
+    </ul>
+{% endblock %}

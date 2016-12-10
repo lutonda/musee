@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Participantes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Apelido</th>
+                <th>Descricao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for participante in participantes %}
+            <tr>
+                <td><a href="{{ path('participante_show', { 'id': participante.id }) }}">{{ participante.id }}</a></td>
+                <td>{{ participante.apelido }}</td>
+                <td>{{ participante.descricao }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('participante_show', { 'id': participante.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('participante_edit', { 'id': participante.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('participante_new') }}">Create a new participante</a>
+        </li>
+    </ul>
+{% endblock %}

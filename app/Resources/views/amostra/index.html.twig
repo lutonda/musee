@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Amostras list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Risca</th>
+                <th>Brilho</th>
+                <th>Dureza</th>
+                <th>Peso</th>
+                <th>Datacadastro</th>
+                <th>Caraceristica</th>
+                <th>Aplicacao</th>
+                <th>Data</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for amostra in amostras %}
+            <tr>
+                <td><a href="{{ path('amostra_show', { 'id': amostra.id }) }}">{{ amostra.id }}</a></td>
+                <td>{{ amostra.nome }}</td>
+                <td>{{ amostra.risca }}</td>
+                <td>{{ amostra.brilho }}</td>
+                <td>{{ amostra.dureza }}</td>
+                <td>{{ amostra.peso }}</td>
+                <td>{% if amostra.datacadastro %}{{ amostra.datacadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ amostra.caraceristica }}</td>
+                <td>{{ amostra.aplicacao }}</td>
+                <td>{% if amostra.data %}{{ amostra.data|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('amostra_show', { 'id': amostra.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('amostra_edit', { 'id': amostra.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('amostra_new') }}">Create a new amostra</a>
+        </li>
+    </ul>
+{% endblock %}

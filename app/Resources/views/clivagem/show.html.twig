@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Clivagem</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ clivagem.id }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ clivagem.tipo }}</td>
+            </tr>
+            <tr>
+                <th>Valor</th>
+                <td>{{ clivagem.valor }}</td>
+            </tr>
+            <tr>
+                <th>Descricao</th>
+                <td>{{ clivagem.descricao }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('clivagem_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('clivagem_edit', { 'id': clivagem.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

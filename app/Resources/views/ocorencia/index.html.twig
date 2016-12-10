@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ocorencias list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descricao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ocorencium in ocorencias %}
+            <tr>
+                <td><a href="{{ path('ocorencia_show', { 'id': ocorencium.id }) }}">{{ ocorencium.id }}</a></td>
+                <td>{{ ocorencium.nome }}</td>
+                <td>{{ ocorencium.descricao }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('ocorencia_show', { 'id': ocorencium.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ocorencia_edit', { 'id': ocorencium.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ocorencia_new') }}">Create a new ocorencium</a>
+        </li>
+    </ul>
+{% endblock %}

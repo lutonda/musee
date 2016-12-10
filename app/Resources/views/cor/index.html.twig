@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cors list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cor in cors %}
+            <tr>
+                <td><a href="{{ path('cor_show', { 'id': cor.id }) }}">{{ cor.id }}</a></td>
+                <td>{{ cor.nome }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cor_show', { 'id': cor.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cor_edit', { 'id': cor.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cor_new') }}">Create a new cor</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Convitepessoas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Confirmacao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for convitepessoa in convitepessoas %}
+            <tr>
+                <td><a href="{{ path('convitepessoa_show', { 'id': convitepessoa.id }) }}">{{ convitepessoa.id }}</a></td>
+                <td>{% if convitepessoa.confirmacao %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('convitepessoa_show', { 'id': convitepessoa.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('convitepessoa_edit', { 'id': convitepessoa.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('convitepessoa_new') }}">Create a new convitepessoa</a>
+        </li>
+    </ul>
+{% endblock %}

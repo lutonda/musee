@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Doacaos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for doacao in doacaos %}
+            <tr>
+                <td><a href="{{ path('doacao_show', { 'id': doacao.id }) }}">{{ doacao.id }}</a></td>
+                <td>{{ doacao.tipo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('doacao_show', { 'id': doacao.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('doacao_edit', { 'id': doacao.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('doacao_new') }}">Create a new doacao</a>
+        </li>
+    </ul>
+{% endblock %}

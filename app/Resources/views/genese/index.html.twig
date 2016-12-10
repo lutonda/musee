@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Genese list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descricao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for genese in genese %}
+            <tr>
+                <td><a href="{{ path('genese_show', { 'id': genese.id }) }}">{{ genese.id }}</a></td>
+                <td>{{ genese.nome }}</td>
+                <td>{{ genese.descricao }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('genese_show', { 'id': genese.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('genese_edit', { 'id': genese.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('genese_new') }}">Create a new genese</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Formasdoscristais list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descricao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formasdoscristai in formasdoscristais %}
+            <tr>
+                <td><a href="{{ path('formasdoscristais_show', { 'id': formasdoscristai.id }) }}">{{ formasdoscristai.id }}</a></td>
+                <td>{{ formasdoscristai.nome }}</td>
+                <td>{{ formasdoscristai.descricao }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('formasdoscristais_show', { 'id': formasdoscristai.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

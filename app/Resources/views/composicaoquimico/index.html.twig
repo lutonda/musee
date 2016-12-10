@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Composicaoquimicos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for composicaoquimico in composicaoquimicos %}
+            <tr>
+                <td><a href="{{ path('composicaoquimico_show', { 'id': composicaoquimico.id }) }}">{{ composicaoquimico.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('composicaoquimico_show', { 'id': composicaoquimico.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('composicaoquimico_edit', { 'id': composicaoquimico.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('composicaoquimico_new') }}">Create a new composicaoquimico</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Densidade</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ densidade.id }}</td>
+            </tr>
+            <tr>
+                <th>De</th>
+                <td>{{ densidade.de }}</td>
+            </tr>
+            <tr>
+                <th>A</th>
+                <td>{{ densidade.a }}</td>
+            </tr>
+            <tr>
+                <th>Descricao</th>
+                <td>{{ densidade.descricao }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('densidade_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('densidade_edit', { 'id': densidade.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

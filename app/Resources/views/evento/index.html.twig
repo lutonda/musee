@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Eventos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Descricao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evento in eventos %}
+            <tr>
+                <td><a href="{{ path('evento_show', { 'id': evento.id }) }}">{{ evento.id }}</a></td>
+                <td>{{ evento.titulo }}</td>
+                <td>{{ evento.descricao }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('evento_show', { 'id': evento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('evento_edit', { 'id': evento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('evento_new') }}">Create a new evento</a>
+        </li>
+    </ul>
+{% endblock %}

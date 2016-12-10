@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Visitas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Duracao</th>
+                <th>Data</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for visitum in visitas %}
+            <tr>
+                <td><a href="{{ path('visita_show', { 'id': visitum.id }) }}">{{ visitum.id }}</a></td>
+                <td>{{ visitum.tipo }}</td>
+                <td>{{ visitum.duracao }}</td>
+                <td>{% if visitum.data %}{{ visitum.data|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('visita_show', { 'id': visitum.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('visita_edit', { 'id': visitum.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('visita_new') }}">Create a new visitum</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Prateleira</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ prateleira.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ prateleira.nome }}</td>
+            </tr>
+            <tr>
+                <th>Local</th>
+                <td>{{ prateleira.local }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('prateleira_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('prateleira_edit', { 'id': prateleira.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

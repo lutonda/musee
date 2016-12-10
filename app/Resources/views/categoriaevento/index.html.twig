@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Categoriaeventos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Categoria</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categoriaevento in categoriaeventos %}
+            <tr>
+                <td><a href="{{ path('categoriaevento_show', { 'id': categoriaevento.id }) }}">{{ categoriaevento.id }}</a></td>
+                <td>{{ categoriaevento.categoria }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('categoriaevento_show', { 'id': categoriaevento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('categoriaevento_edit', { 'id': categoriaevento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('categoriaevento_new') }}">Create a new categoriaevento</a>
+        </li>
+    </ul>
+{% endblock %}

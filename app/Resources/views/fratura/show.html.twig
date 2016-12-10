@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fratura</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fratura.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ fratura.nome }}</td>
+            </tr>
+            <tr>
+                <th>Descricao</th>
+                <td>{{ fratura.descricao }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fratura_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fratura_edit', { 'id': fratura.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

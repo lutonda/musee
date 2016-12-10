@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Prateleiras list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Local</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for prateleira in prateleiras %}
+            <tr>
+                <td><a href="{{ path('prateleira_show', { 'id': prateleira.id }) }}">{{ prateleira.id }}</a></td>
+                <td>{{ prateleira.nome }}</td>
+                <td>{{ prateleira.local }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('prateleira_show', { 'id': prateleira.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('prateleira_edit', { 'id': prateleira.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('prateleira_new') }}">Create a new prateleira</a>
+        </li>
+    </ul>
+{% endblock %}

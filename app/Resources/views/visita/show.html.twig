@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Visitum</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ visitum.id }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ visitum.tipo }}</td>
+            </tr>
+            <tr>
+                <th>Duracao</th>
+                <td>{{ visitum.duracao }}</td>
+            </tr>
+            <tr>
+                <th>Data</th>
+                <td>{% if visitum.data %}{{ visitum.data|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('visita_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('visita_edit', { 'id': visitum.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

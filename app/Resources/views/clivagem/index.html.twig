@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Clivagems list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Descricao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for clivagem in clivagems %}
+            <tr>
+                <td><a href="{{ path('clivagem_show', { 'id': clivagem.id }) }}">{{ clivagem.id }}</a></td>
+                <td>{{ clivagem.tipo }}</td>
+                <td>{{ clivagem.valor }}</td>
+                <td>{{ clivagem.descricao }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('clivagem_show', { 'id': clivagem.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('clivagem_edit', { 'id': clivagem.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('clivagem_new') }}">Create a new clivagem</a>
+        </li>
+    </ul>
+{% endblock %}

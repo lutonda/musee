@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <div class="page-title">
+        <h1>
+            Utilizadores
+        </h1>
+    </div>
+    <div class="col-lg-12">
+        <div class="widget-container fluid-height clearfix">
+            <div class="heading">
+                <a class="btn btn-primary btn" data-toggle="modal" href="components.html#myModal">Bootstrap Modal</a>
+                <a class="btn btn-sm btn-primary-outline pull-right" href="{{ path('pessoa_new') }}" id="add-row"><i class="fa fa-plus"></i>Add row</a>
+            </div>
+            <div class="widget-content padded clearfix">
+                <div id="dataTable1_wrapper" class="dataTables_wrapper" role="grid">
+
+                    <table class="table table-bordered table-striped dataTable" id="dataTable1" aria-describedby="dataTable1_info">
+                        <thead>
+                        <tr role="row"><th class="check-header hidden-xs sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="
+
+                    " style="width: 17px;">
+
+                                <label><input id="checkAll" name="checkAll" type="checkbox"><span></span></label>
+                            </th><th class="sorting" role="columnheader" tabindex="0" aria-controls="dataTable1" rowspan="1" colspan="1" aria-label="
+                      First Name
+                    : activate to sort column ascending" style="width: 80px;">
+                                N.º
+                            </th><th class="sorting" role="columnheader" tabindex="0" aria-controls="dataTable1" rowspan="1" colspan="1" aria-label="
+                      Last Name
+                    : activate to sort column ascending" style="width: 413px;">
+                                Username
+                            </th><th class="hidden-xs sorting" role="columnheader" tabindex="0" aria-controls="dataTable1" rowspan="1" colspan="1" aria-label="
+                      Email
+                    : activate to sort column ascending" style="width: 383px;">
+                                Tipo
+                            </th><th class="hidden-xs sorting" role="columnheader" tabindex="0" aria-controls="dataTable1" rowspan="1" colspan="1" aria-label="
+                      Email
+                    : activate to sort column ascending" style="width: 383px;">
+                                Roles
+                            </th><th class="hidden-xs sorting" role="columnheader" tabindex="0" aria-controls="dataTable1" rowspan="1" colspan="1" aria-label="
+                      Date Added
+                    : activate to sort column ascending" style="width: 239px;">
+                                Date de Cadastro
+                            </th><th class="hidden-xs sorting" role="columnheader" tabindex="0" aria-controls="dataTable1" rowspan="1" colspan="1" aria-label="
+                      Status
+                    : activate to sort column ascending" style="width: 246px;">
+                                Estado
+                            </th><th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 72px;"></th></tr></thead>
+
+                        <tbody role="alert" aria-live="polite" aria-relevant="all">
+                        {% for usuario in usuarios %}
+                            <tr class="odd">
+                                <td class="check hidden-xs  sorting_1">
+                                    <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                                </td>
+                                <td  class=" "><a href="{{ path('pessoa_show', { 'id': usuario.idpessoa.id }) }}">{{ usuario.idpessoa.id }}</a></td>
+                                <td class=" ">{{ usuario.username}}</td>
+                                <td class=" ">{{ usuario.tipo }}</td>
+                                <td class=" ">{# usuario.roles #}</td>
+                                <td class="hidden-xs ">{% if usuario.data %}{{ usuario.data|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td class=" ">
+                                    {% if usuario.estado %}
+                                        <span class="label label-success">Activo</span>
+                                    {% else %}
+                                        <span class="label label-danger">Cancelado</span>
+                                    {% endif %}
+                                </td>
+                                <td class="actions ">
+                                    <div class="action-buttons">
+                                        <a class="table-actions" href="{{ path('pessoa_show', { 'id': usuario.idpessoa.id }) }}">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <a class="table-actions" href="{{ path('pessoa_edit', { 'id': usuario.id }) }}">
+                                            <i class="fa fa-pencil"></i></a>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

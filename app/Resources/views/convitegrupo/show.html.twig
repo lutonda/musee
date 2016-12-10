@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Convitegrupo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ convitegrupo.id }}</td>
+            </tr>
+            <tr>
+                <th>Confirmacao</th>
+                <td>{% if convitegrupo.confirmacao %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('convitegrupo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('convitegrupo_edit', { 'id': convitegrupo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

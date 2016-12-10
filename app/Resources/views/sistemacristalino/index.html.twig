@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sistemacristalinos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sistemacristalino in sistemacristalinos %}
+            <tr>
+                <td><a href="{{ path('sistemacristalino_show', { 'id': sistemacristalino.id }) }}">{{ sistemacristalino.id }}</a></td>
+                <td>{{ sistemacristalino.nome }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('sistemacristalino_show', { 'id': sistemacristalino.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sistemacristalino_edit', { 'id': sistemacristalino.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sistemacristalino_new') }}">Create a new sistemacristalino</a>
+        </li>
+    </ul>
+{% endblock %}

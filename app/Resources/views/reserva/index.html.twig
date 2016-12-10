@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reservas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantidade</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reserva in reservas %}
+            <tr>
+                <td><a href="{{ path('reserva_show', { 'id': reserva.id }) }}">{{ reserva.id }}</a></td>
+                <td>{{ reserva.quantidade }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reserva_show', { 'id': reserva.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

@@ -1,0 +1,9 @@
+<h1>Lista de: {{ nome | upper}}</h1>
+
+<ul>
+    {% for pais in paises %}
+    <li>{{ pais }}</li>
+    {% endfor %}
+
+</ul>
+{{ dump() }}

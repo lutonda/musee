@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Geneseamostras list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for geneseamostra in geneseamostras %}
+            <tr>
+                <td><a href="{{ path('geneseamostra_show', { 'id': geneseamostra.id }) }}">{{ geneseamostra.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('geneseamostra_show', { 'id': geneseamostra.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('geneseamostra_edit', { 'id': geneseamostra.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('geneseamostra_new') }}">Create a new geneseamostra</a>
+        </li>
+    </ul>
+{% endblock %}

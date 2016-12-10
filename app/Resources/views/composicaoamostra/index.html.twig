@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Composicaoamostras list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for composicaoamostra in composicaoamostras %}
+            <tr>
+                <td><a href="{{ path('composicaoamostra_show', { 'id': composicaoamostra.id }) }}">{{ composicaoamostra.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('composicaoamostra_show', { 'id': composicaoamostra.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('composicaoamostra_edit', { 'id': composicaoamostra.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('composicaoamostra_new') }}">Create a new composicaoamostra</a>
+        </li>
+    </ul>
+{% endblock %}

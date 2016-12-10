@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Emprestimos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descricao</th>
+                <th>Tipo</th>
+                <th>Duracao</th>
+                <th>Data</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emprestimo in emprestimos %}
+            <tr>
+                <td><a href="{{ path('emprestimo_show', { 'id': emprestimo.id }) }}">{{ emprestimo.id }}</a></td>
+                <td>{{ emprestimo.descricao }}</td>
+                <td>{{ emprestimo.tipo }}</td>
+                <td>{{ emprestimo.duracao }}</td>
+                <td>{% if emprestimo.data %}{{ emprestimo.data|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('emprestimo_show', { 'id': emprestimo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('emprestimo_edit', { 'id': emprestimo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('emprestimo_new') }}">Create a new emprestimo</a>
+        </li>
+    </ul>
+{% endblock %}

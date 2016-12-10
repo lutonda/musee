@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Habitos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Designacao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for habito in habitos %}
+            <tr>
+                <td><a href="{{ path('habito_show', { 'id': habito.id }) }}">{{ habito.id }}</a></td>
+                <td>{{ habito.nome }}</td>
+                <td>{{ habito.designacao }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('habito_show', { 'id': habito.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('habito_edit', { 'id': habito.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('habito_new') }}">Create a new habito</a>
+        </li>
+    </ul>
+{% endblock %}

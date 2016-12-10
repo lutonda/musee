@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Transparencias list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descricao</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transparencium in transparencias %}
+            <tr>
+                <td><a href="{{ path('transparencia_show', { 'id': transparencium.id }) }}">{{ transparencium.id }}</a></td>
+                <td>{{ transparencium.nome }}</td>
+                <td>{{ transparencium.descricao }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('transparencia_show', { 'id': transparencium.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('transparencia_edit', { 'id': transparencium.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('transparencia_new') }}">Create a new transparencium</a>
+        </li>
+    </ul>
+{% endblock %}

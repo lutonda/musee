@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container-fluid main-content">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="{{ path('pessoa_index') }}"><i class="fa fa-backward"></i></a>
+                    </li>
+                    <li>
+                        <a href="/"><i class="fa fa-home"></i></a>
+                    </li>
+                    {% for u in url %}
+                    <li>
+                        <a href="{{ path(u) }}">{{ u }}</a>
+                    </li>
+                    {% endfor %}
+                    <li class="active">
+                        {{ pessoa.nome }}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <div class="page-title">
+                    <h1>
+                        Pessoa #{{ pessoa.id }}
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div style="float: right;">
+                    <label style="margin-right: 30px; display: none"><input id="autoopen" type="checkbox" checked hidden="hidden" ><span>Auto open next field</span></label>
+
+                    {{ form_start(delete_form) }}
+                    <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o"></i>Eliminar</button>
+                    <button class="btn btn-default" id="enable" style="margin:0;">Activar / Desativar Edição</button>
+                    {{ form_end(delete_form) }}
+
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 0">
+            <div class="col-lg-12">
+
+
+                <div class="widget-container fluid-height clearfix">
+                    <div class="widget-content padded">
+                        <p>
+                            <em>Click fields below to edit</em>
+                        </p>
+                        <table class="table table-bordered table-striped editable-form" id="user" style="clear: both">
+                            <tbody>
+                            <tr>
+                                <td style="width: 35%; max-width: 120px">
+                                    Nome Completo
+                                </td>
+                                <td>
+                                    <a data-original-title="Enter username" data-pk="1" data-type="text" href="xeditable.html#" id="username" class="editable editable-click">{{ pessoa.nome }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Numero
+                                </td>
+                                <td>
+                                    <a data-original-title="Enter your firstname" data-pk="1" data-placeholder="Required" data-placement="right" data-type="text" href="xeditable.html#" id="firstname" class="editable editable-click editable-empty">{{ pessoa.numero }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Nivel Academico
+                                </td>
+                                <td>
+                                    <a data-original-title="Select sex" data-pk="1" data-type="select" data-value="" href="xeditable.html#" id="sex" class="editable editable-click">{{ pessoa.nivelacademico }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Tipo
+                                </td>
+                                <td>
+                                    <a data-original-title="Select group" data-pk="1" data-source="/groups" data-type="select" data-value="5" href="xeditable.html#" id="group" class="editable editable-click">{{ pessoa.tipo }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Especialidade
+                                </td>
+                                <td>
+                                    <a data-original-title="Select group" data-pk="1" data-source="/groups" data-type="select" data-value="5" href="xeditable.html#" id="group" class="editable editable-click">{{ pessoa.especialidade.nome }}</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Curso
+                                </td>
+                                <td>
+                                    <a data-original-title="Enter username" data-pk="1" data-type="text" href="xeditable.html#" id="username" class="editable editable-click">
+                                        {% for contacto in pessoa.contactos %}
+                                            {{ contacto.descricao }},
+                                        {% endfor %}
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Genero
+                                </td>
+                                <td>
+                                    <a data-original-title="Select status" data-pk="1" data-source="/status" data-type="select" data-value="0" href="xeditable.html#" id="status" class="editable editable-click">{{ pessoa.genero }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Data de nascimento
+                                </td>
+                                <td>
+                                    <a data-format="YYYY-MM-DD" data-original-title="Select Date of birth" data-pk="1" data-template="D / MMM / YYYY" data-type="combodate" data-value="{% if pessoa.datanacimento %}{{ pessoa.datanacimento|date('Y-m-d') }}{% endif %}" data-viewformat="DD/MM/YYYY" href="xeditable.html#" id="dob" class="editable editable-click">{% if pessoa.datanacimento %}{{ pessoa.datanacimento|date('d-m-Y') }}{% endif %}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 35%; max-width: 120px">
+                                    Naturalidade
+                                </td>
+                                <td>
+                                    <a data-original-title="Enter username" data-pk="1" data-type="text" href="xeditable.html#" id="username" class="editable editable-click">{{ pessoa.naturalidade.nome }}, Província de {{ pessoa.naturalidade.idprovincia.nome }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 35%; max-width: 120px">
+                                    Nacionalidade
+                                </td>
+                                <td>
+                                    <a data-original-title="Enter username" data-pk="1" data-type="text" href="xeditable.html#" id="username" class="editable editable-click">{{ pessoa.naturalidade.idprovincia.idpais.nome }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 35%; max-width: 120px">
+                                    Morada
+                                </td>
+                                <td>
+                                    <a data-original-title="Enter username" data-pk="1" data-type="text" href="xeditable.html#" id="username" class="editable editable-click">{{ pessoa.morada.nome }}, Província de {{ pessoa.morada.idprovincia.nome }}, {{ pessoa.morada.idprovincia.idpais.nome }}</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Data de Cadastro
+                                </td>
+                                <td>
+                                    <a data-format="DD-MM-YYYY HH:mm" data-original-title="Setup event date and time" data-pk="1" data-template="D MMM YYYY  HH:mm" data-type="combodate" data-viewformat="MMM D, YYYY, HH:mm"  class="editable editable-click editable-empty">{% if pessoa.data %}{{ pessoa.data|date('H:i:s d-m-Y') }}{% endif %}</a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

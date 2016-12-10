@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Municipios list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for municipio in municipios %}
+            <tr>
+                <td><a href="{{ path('municipio_show', { 'id': municipio.id }) }}">{{ municipio.id }}</a></td>
+                <td>{{ municipio.nome }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('municipio_show', { 'id': municipio.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}
