@@ -72,4 +72,17 @@ class PessoaRepositorio
         return $pessoa;
     }
 
+    public function salvarUm(Pessoa $pessoa)
+    {
+
+        $this->em;
+
+        $pessoa->setData(date('Y-m-d'));
+        $pessoa->setEstado(true);
+        var_dump($pessoa);
+
+        $this->em->persist($pessoa);
+        $this->em->flush();
+    }
+
 }

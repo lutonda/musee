@@ -25,7 +25,6 @@ class UsuarioController extends Controller
      */
     public function indexAction()
     {
-        phpinfo();
         $em = $this->getDoctrine()->getManager();
         $usuarios = new UsuarioRepositorio($em);
         $usuarios = $usuarios->mostrarTodos();
@@ -47,6 +46,7 @@ class UsuarioController extends Controller
      */
     public function newAction(Request $request)
     {
+        var_dump($request->request);
         $usuario = new Data\MUS\Usuario();
         $form = $this->createForm('AppBundle\Application\MUS\UsuarioType', $usuario);
         $form->handleRequest($request);
@@ -145,13 +145,36 @@ class UsuarioController extends Controller
         ;
     }
     /******SER ESTUDADO********/
+    /**
+     * Creates a new usuario entity.
+     *
+     * @Route("/save", name="usuario_save")
+     * @Method({"GET", "POST"})
+     */
     public function createAction(Request $req)
     {
-        $em   = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new RegistrationType(), new User());
-        $form->handleRequest($req);
 
-        $user= new User();
+        $usuario = new Data\MUS\Usuario();
+        $pessoa = new Data\MUS\Pessoa();
+        $contactos=new Data\MUS\Contactos();
+
+        $em   = $this->getDoctrine()->getManager();
+
+
+        $form = $this->createForm('AppBundle\Application\MUS\UsuarioType', $usuario);
+        $form->handleRequest($req);
+        $usuarios = new UsuarioRepositorio($em);
+
+        $usuario->setUsername($req->request->get('username'));
+        $usuario->setPassword($req->request->get('password'));
+        $usuarios->salvarUm($usuario);
+        return $this->render('index.html.twig', [
+            'pagina' => "usuario/index.html.twig"
+        ]);
+      /*  $pessoa->setNome($req->request->firstname.''.$req->request->lasttname);
+        $contactos->setDescricao($req->request->email);
+        $contactos->setIdtiipocontacto(2);
+
         $user= $form->getData();
 
         $user->setCreated(new \DateTime());
@@ -168,7 +191,8 @@ class UsuarioController extends Controller
         $em->flush();
 
         $url = $this->generateUrl('login');
-        return $this->redirect($url);
+        return $this->redirect($url);*/
+        $encoder=$this->container->get('security.password_encoder');
     }
 
 }

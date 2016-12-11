@@ -2,7 +2,11 @@
 <project version="4">
   <component name="PhpProjectServersManager">
     <servers>
-      <server host="127.0.0.1" id="69572aa8-7b29-4bc7-bcc6-7060c35afb36" name="debug" port="9000" />
+      <server host="127.0.0.1" id="69572aa8-7b29-4bc7-bcc6-7060c35afb36" name="debug" port="9000" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$" remote-root="/var/www/html/musee/des" />
+        </path_mappings>
+      </server>
     </servers>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />

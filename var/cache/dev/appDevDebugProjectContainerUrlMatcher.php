@@ -3242,6 +3242,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_usuario_delete:
 
+            // usuario_save
+            if ($pathinfo === '/utilizadores/save') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_usuario_save;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\MUS\\UsuarioController::createAction',  '_route' => 'usuario_save',);
+            }
+            not_usuario_save:
+
         }
 
         if (0 === strpos($pathinfo, '/visita')) {

@@ -27,19 +27,23 @@ class UsuarioRepositorio extends EntityRepository implements UserLoaderInterface
     {
         $this->em = $em;
     }
-    public function mostrarTodos(){
+
+    public function mostrarTodos()
+    {
 
 
         $usuario = $this
             ->em
             ->getRepository('AppBundle:MUS\Usuario')
             ->findAll();
-        for ($i = 0; $i < sizeof($usuario);$i++)
+        for ($i = 0; $i < sizeof($usuario); $i++)
             $usuario[$i] = $this->mostrarUm($usuario[$i]->getId());
 
         return $usuario;
     }
-    public function mostrarUm($id){
+
+    public function mostrarUm($id)
+    {
 
         $en = new SYS\enuRepositorio();
         $usuario = new Usuario();
@@ -49,12 +53,12 @@ class UsuarioRepositorio extends EntityRepository implements UserLoaderInterface
         $qb = $qb->select('u', 'p')
             ->from('AppBundle:MUS\Usuario', 'u')
             ->leftJoin('u.idpessoa', 'p')
-            ->select('u.id', 'u.username', 'u.tipo', 'u.roles','u.estado','u.data','p.id as pessoa')
-            ->where('u.id='.$id)
+            ->select('u.id', 'u.username', 'u.tipo', 'u.roles', 'u.estado', 'u.data', 'p.id as pessoa')
+            ->where('u.id=' . $id)
             ->getQuery();
 
-        $qb=$qb->getResult();
-        $qb=$qb[0];
+        $qb = $qb->getResult();
+        $qb = $qb[0];
         $pessoa->setId($qb['pessoa']);
         $usuario->setId($id);
         $usuario->setUsername($qb['username']);
@@ -64,6 +68,53 @@ class UsuarioRepositorio extends EntityRepository implements UserLoaderInterface
         $usuario->setEstado($qb['estado']);
         $usuario->setData($qb['data']);
         return $usuario;
+    }
+
+    public function verificar($id)
+    {
+
+        $en = new SYS\enuRepositorio();
+        $usuario = new Usuario();
+        $ps = new PessoaRepositorio($this->em);
+        $pessoa = new Pessoa();
+        $qb = $this->em->createQueryBuilder();
+        $qb = $qb->select('u', 'p')
+            ->from('AppBundle:MUS\Usuario', 'u')
+            ->leftJoin('u.idpessoa', 'p')
+            ->select('u.id', 'u.username', 'u.tipo', 'u.roles', 'u.estado', 'u.data', 'p.id as pessoa')
+            ->where('u.id=' . $id)
+            ->getQuery();
+
+        $qb = $qb->getResult();
+        $qb = $qb[0];
+        $pessoa->setId($qb['pessoa']);
+        $usuario->setId($id);
+        $usuario->setUsername($qb['username']);
+        $usuario->setTipo($en->tipoPessoaEnum($qb['tipo']));
+        $usuario->setRoles($qb['roles']);
+        $usuario->setIdpessoa($ps->mostrarUm($pessoa));
+        $usuario->setEstado($qb['estado']);
+        $usuario->setData($qb['data']);
+        return $usuario;
+    }
+
+    public function salvarUm(Usuario $usuario)
+    {
+
+        $this->em;
+
+        $usuario->setData(date('Y-m-d'));
+        $usuario->setRoles('ROLE_USER');
+        //$usuario->setGravatar('http://www.gravatar.com/avatar/'.md5(trim($req->get('email'))));
+        $usuario->setEstado(true);
+        var_dump($usuario);
+        $pwd = $usuario->getPassword();
+        //$encoder=$this->container->get('security.password_encoder');
+        //$pwd=$encoder->encodePassworrd($usuario, $pwd);
+        $usuario->setPassword($pwd);
+
+        $this->em->persist($usuario);
+        $this->em->flush();
     }
 
     public function loadUserByUsername($username)
