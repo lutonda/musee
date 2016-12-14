@@ -9,6 +9,7 @@
 namespace AppBundle\Domain\MUS;
 
 use AppBundle\Data\MUS\Contactos;
+use AppBundle\Data\MUS\Pessoa;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\EntityManager;
 
@@ -27,12 +28,11 @@ class ConstactosRepositorio
             ->getRepository('AppBundle:MUS\Contactos')
             ->findAll();
         for ($i = 0; $i < sizeof($contactos);$i++)
-            $contactos[$i] = $this->mostrarUm($contactos[$i]->getId());
+            $contactos[$i] = $this->mostrarUm($contactos[$i]);
 
         return $contactos;
     }
-    public function mostrarUm($id){
-        $contacto = new Contactos();
+    public function mostrarUm($contacto){
         $tipocontacto = new tipocontactoRepositorio($this->em);
         $qb = $this->em
             ->createQueryBuilder();
@@ -41,34 +41,35 @@ class ConstactosRepositorio
             ->leftJoin('c.idtiipocontacto','t')
             ->leftJoin('c.idpessoa','p')
             ->select('t.id as tipo', 'c.descricao as descricao','p.id as pessoa')
-            ->where('c.id='.$id)
+            ->where('c.id= :contacto')
+            ->setParameter('contacto',$contacto->getId())
             ->getQuery();
 
         $qb=$qb->getResult()[0];
-        $contacto->setId($id);
+        $contacto->setId($contacto->getId());
         $contacto->setDescricao($qb['descricao']);
         $contacto->setIdtiipocontacto($tipocontacto->mostrarUm($qb['tipo']));
         $contacto->setIdpessoa($qb['pessoa']);
         return $contacto;
     }
-    public function mostrarPessoa($id){
+    public function mostrarPessoa(Pessoa $pessoa){
         $contactos = array();
         $tipocontacto = new tipocontactoRepositorio($this->em);
-        $qb = $this->em
-            ->createQueryBuilder();
+        $qb = $this->em->createQueryBuilder();
         $qb=$qb->select('c','p')
             ->from('AppBundle:MUS\Contactos','c')
             ->leftJoin('c.idtiipocontacto','t')
             ->leftJoin('c.idpessoa','p')
-            ->select('t.id as tipo', 'c.descricao as descricao','p.id as pessoa')
-            ->where('p.id IN (:pessoa)')
-            ->setParameter('pessoa',$id)
+            ->select('c.id as id','t.id as tipo', 'c.descricao as descricao','p.id as pessoa')
+            ->where('p.id = :pessoa')
+            ->setParameter('pessoa',$pessoa->getId())
             ->getQuery();
         $i=0;
+
         while (sizeof($qb->getResult())>$i) {
         $qc=$qb->getResult()[$i];;
         $contacto = new Contactos();
-        $contacto->setId($id);
+        $contacto->setId($qc['id']);
         $contacto->setDescricao($qc['descricao']);
         $contacto->setIdtiipocontacto($tipocontacto->mostrarUm($qc['tipo']));
         $contacto->setIdpessoa($qc['pessoa']);

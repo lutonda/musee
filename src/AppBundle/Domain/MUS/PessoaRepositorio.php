@@ -52,8 +52,13 @@ class PessoaRepositorio
             ->leftJoin('p.morada', 'm')
             ->leftJoin('p.naturalidade', 'n')
             ->select('p.id', 'p.nome', 'p.numero','p.genero','p.estado','p.tipo', 'm.id as morada','p.nivelacademico','c.id as curso','e.id as especialidade','n.id as naturalidade')
-            ->where('p.id='.$pessoa->getId())
-            ->getQuery();
+            ->where('p.id=:pessoa')
+            ->getParameter('pessoa',$pessoa->getId());
+
+        /*if($qb==null)
+            return null;
+        else*/
+            $qb=$qb->getQuery();
 
         $qb=$qb->getResult();
         $qb=$qb[0];
@@ -68,21 +73,53 @@ class PessoaRepositorio
         $pessoa->setEspecialidade($cr->mostrarUm($qb['especialidade']));
         $pessoa->setMorada($mr->mostrarUm($qb['morada']));
         $pessoa->setNaturalidade($mr->mostrarUm($qb['naturalidade']));
-        $pessoa->setContactos($ct->mostrarPessoa($pessoa->getId()));
+        $pessoa->setContactos($ct->mostrarPessoa($pessoa));
         return $pessoa;
     }
 
     public function salvarUm(Pessoa $pessoa)
     {
-
         $this->em;
-
         $pessoa->setData(date('Y-m-d'));
         $pessoa->setEstado(true);
-        var_dump($pessoa);
 
         $this->em->persist($pessoa);
         $this->em->flush();
+    }
+
+    public function ShowLast(){
+        $pessoa=new Pessoa();
+        $en = new SYS\enuRepositorio();
+        $cr = new CursoRepositorio($this->em);
+        $mr = new MunicipioRepositorio($this->em);
+        $ct = new ConstactosRepositorio($this->em);
+
+        $qb = $this->em->createQueryBuilder();
+        $qb = $qb->select('c', 'p')
+            ->from('AppBundle:MUS\Pessoa', 'p')
+            ->leftJoin('p.curso', 'c')
+            ->leftJoin('p.especialidade', 'e')
+            ->leftJoin('p.morada', 'm')
+            ->leftJoin('p.naturalidade', 'n')
+            ->select('p.id', 'p.nome', 'p.numero','p.genero','p.estado','p.tipo', 'm.id as morada','p.nivelacademico','c.id as curso','e.id as especialidade','n.id as naturalidade')
+            ->getQuery();
+
+        $qb=$qb->getResult();
+        $qb=$qb[0];
+        $pessoa->setId($qb['id']);
+        $curso = $cr->mostrarUm($qb['curso']);
+        $pessoa->setNome($qb['nome']);
+        $pessoa->setNumero($qb['numero']);
+        $pessoa->setGenero($en->generoEnum($qb['genero']));
+        $pessoa->setEstado($en->estadoEnum($qb['estado']));
+        $pessoa->setTipo($en->tipoPessoaEnum($qb['tipo']));
+        $pessoa->setNivelacademico($qb['nivelacademico']);
+        $pessoa->setCurso($cr->mostrarUm($qb['curso']));
+        $pessoa->setEspecialidade($cr->mostrarUm($qb['especialidade']));
+        $pessoa->setMorada($mr->mostrarUm($qb['morada']));
+        $pessoa->setNaturalidade($mr->mostrarUm($qb['naturalidade']));
+        $pessoa->setContactos($ct->mostrarPessoa($pessoa));
+        return $pessoa;
     }
 
 }

@@ -44,8 +44,12 @@ class MunicipioRepositorio
             ->from('AppBundle:SYS\Municipio','m')
             ->leftJoin('m.idprovincia','p')
             ->select('m.id', 'm.nome', 'p.id as provincia')
-            ->where('m.id='.$idMunicipio)
-            ->getQuery();
+            ->where('m.id=:municipio')
+            ->getParameter('municipio',$idMunicipio);
+        if($qb!=null)
+            $qb=$qb->getQuery();
+        else
+            return null;
 
         $qb=$qb->getResult();
         $qb=$qb[0];

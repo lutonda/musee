@@ -2,7 +2,7 @@
 <project version="4">
   <component name="PhpProjectServersManager">
     <servers>
-      <server host="127.0.0.1" id="69572aa8-7b29-4bc7-bcc6-7060c35afb36" name="debug" port="9000" use_path_mappings="true">
+      <server host="localhost" id="72b9ab04-7c44-4853-8b48-1df2dd05274f" name="debug" port="9000">
         <path_mappings>
           <mapping local-root="$PROJECT_DIR$" remote-root="/var/www/html/musee/des" />
         </path_mappings>
@@ -12,7 +12,7 @@
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />
   <component name="PhpUnit">
     <phpunit_settings>
-      <PhpUnitSettings load_method="CUSTOM_LOADER" />
+      <PhpUnitSettings load_method="CUSTOM_LOADER" custom_loader_path="$PROJECT_DIR$/bin/console" phpunit_phar_path="" />
     </phpunit_settings>
   </component>
 </project>

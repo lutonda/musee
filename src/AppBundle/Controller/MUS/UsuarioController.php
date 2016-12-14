@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\MUS;
 
+use AppBundle\Domain\MUS\PessoaRepositorio;
 use AppBundle\Domain\MUS\UsuarioRepositorio;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -46,7 +47,25 @@ class UsuarioController extends Controller
      */
     public function newAction(Request $request)
     {
-        var_dump($request->request);
+
+        $usuario = new Data\MUS\Usuario();
+        $form = $this->createForm('AppBundle\Application\MUS\UsuarioType', $usuario);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($usuario);
+            $em->flush($usuario);
+
+            return $this->redirectToRoute('evento_show', array('id' => $usuario->getId()));
+        }
+
+        return $this->render('index.html.twig', [
+                'pagina' => "usuario/new.html.twig",
+                'usuario' => $usuario,
+                'form' => $form->createView()]
+        );
+        /*var_dump($request->request);
         $usuario = new Data\MUS\Usuario();
         $form = $this->createForm('AppBundle\Application\MUS\UsuarioType', $usuario);
         $form->handleRequest($request);
@@ -63,7 +82,7 @@ class UsuarioController extends Controller
             'pagina' => "usuario/new.html.twig",
             'usuario' => $usuario,
             'form' => $form->createView(),
-        ]);
+        ]);*/
     }
 
 
@@ -160,16 +179,25 @@ class UsuarioController extends Controller
 
         $em   = $this->getDoctrine()->getManager();
 
+        $usuarios = new UsuarioRepositorio($em);
+        $pessoas=new PessoaRepositorio($em);
 
         $form = $this->createForm('AppBundle\Application\MUS\UsuarioType', $usuario);
         $form->handleRequest($req);
         $usuarios = new UsuarioRepositorio($em);
-
+        $pessoa->setNome($req->request->get('firstname').' '.$req->request->get('lastname'));
+        $pessoa->setData(date('Y-m-d h:i:s'));
+        //$pessoas->salvarUm($pessoa);
+        $pessoa->setId($pessoas->ShowLast()->getId());
         $usuario->setUsername($req->request->get('username'));
         $usuario->setPassword($req->request->get('password'));
+        $usuario->setIdpessoa($pessoa);
         $usuarios->salvarUm($usuario);
+
+        var_dump($usuarios->ShowLast());
         return $this->render('index.html.twig', [
-            'pagina' => "usuario/index.html.twig"
+            'pagina' => "usuario/index.html.twig",
+            'usuarios'=> $usuarios->ShowLast()
         ]);
       /*  $pessoa->setNome($req->request->firstname.''.$req->request->lasttname);
         $contactos->setDescricao($req->request->email);

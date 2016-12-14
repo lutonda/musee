@@ -117,7 +117,7 @@ class Usuario implements AdvancedUserInterface,  \Serializable
     {
         $this->username = $username;
 
-        return $this;
+        return null;
     }
 
     /**

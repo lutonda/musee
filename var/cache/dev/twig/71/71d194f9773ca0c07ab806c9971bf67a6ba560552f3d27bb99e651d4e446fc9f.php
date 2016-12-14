@@ -21,20 +21,20 @@ class __TwigTemplate_798f7f575e98875f7db44357220ceb1304d899f8822b58702ce792a7b55
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_407584852b953a85961f0369275271acb8aa9d121a234167d8c49b35787085fb = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_407584852b953a85961f0369275271acb8aa9d121a234167d8c49b35787085fb->enter($__internal_407584852b953a85961f0369275271acb8aa9d121a234167d8c49b35787085fb_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "usuario/new.html.twig"));
+        $__internal_4777d8feb2a7d43df11193675859d87d34270c03a9daf94d477c917f2a36b6c5 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_4777d8feb2a7d43df11193675859d87d34270c03a9daf94d477c917f2a36b6c5->enter($__internal_4777d8feb2a7d43df11193675859d87d34270c03a9daf94d477c917f2a36b6c5_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "usuario/new.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_407584852b953a85961f0369275271acb8aa9d121a234167d8c49b35787085fb->leave($__internal_407584852b953a85961f0369275271acb8aa9d121a234167d8c49b35787085fb_prof);
+        $__internal_4777d8feb2a7d43df11193675859d87d34270c03a9daf94d477c917f2a36b6c5->leave($__internal_4777d8feb2a7d43df11193675859d87d34270c03a9daf94d477c917f2a36b6c5_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_a1449f4f8106cda5e65a2b01e9be44690ff346f243c75b09cbee485a4eeaa756 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_a1449f4f8106cda5e65a2b01e9be44690ff346f243c75b09cbee485a4eeaa756->enter($__internal_a1449f4f8106cda5e65a2b01e9be44690ff346f243c75b09cbee485a4eeaa756_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "usuario/new.html.twig"));
+        $__internal_6f5d23cbb0794b7a47eb0dd814f72bb8502c39c83438aa3b03c02cf76ad6566e = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_6f5d23cbb0794b7a47eb0dd814f72bb8502c39c83438aa3b03c02cf76ad6566e->enter($__internal_6f5d23cbb0794b7a47eb0dd814f72bb8502c39c83438aa3b03c02cf76ad6566e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "usuario/new.html.twig"));
 
         // line 4
         echo "
@@ -57,6 +57,7 @@ class __TwigTemplate_798f7f575e98875f7db44357220ceb1304d899f8822b58702ce792a7b55
         echo " \" id=\"validate-form\" method=\"POST\" novalidate=\"novalidate\">
                         <fieldset>
                             <div class=\"row\">
+
                                 <div class=\"col-md-6\">
                                     <div class=\"form-group\">
                                         <label for=\"firstname\">Primeiro Nome</label><input class=\"form-control\" id=\"firstname\" name=\"firstname\" type=\"text\">
@@ -90,7 +91,7 @@ class __TwigTemplate_798f7f575e98875f7db44357220ceb1304d899f8822b58702ce792a7b55
     </div>
 ";
         
-        $__internal_a1449f4f8106cda5e65a2b01e9be44690ff346f243c75b09cbee485a4eeaa756->leave($__internal_a1449f4f8106cda5e65a2b01e9be44690ff346f243c75b09cbee485a4eeaa756_prof);
+        $__internal_6f5d23cbb0794b7a47eb0dd814f72bb8502c39c83438aa3b03c02cf76ad6566e->leave($__internal_6f5d23cbb0794b7a47eb0dd814f72bb8502c39c83438aa3b03c02cf76ad6566e_prof);
 
     }
 
@@ -139,6 +140,7 @@ class __TwigTemplate_798f7f575e98875f7db44357220ceb1304d899f8822b58702ce792a7b55
                     <form action=\"{{ path('usuario_save') }} \" id=\"validate-form\" method=\"POST\" novalidate=\"novalidate\">
                         <fieldset>
                             <div class=\"row\">
+
                                 <div class=\"col-md-6\">
                                     <div class=\"form-group\">
                                         <label for=\"firstname\">Primeiro Nome</label><input class=\"form-control\" id=\"firstname\" name=\"firstname\" type=\"text\">

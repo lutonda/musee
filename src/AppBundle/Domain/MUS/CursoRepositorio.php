@@ -28,12 +28,18 @@ class CursoRepositorio
         return $pais;
     }
     public function mostrarUm($idCurso){
+        if($idCurso=null)
+            return null;
         $curso = new Curso();
         $qb = $this->em->getRepository('AppBundle:MUS\Curso')
             ->createQueryBuilder('c')
             ->select('c.id', 'c.nome', 'c.descricao')
-            ->where('c.id='.$idCurso)
-            ->getQuery();
+            ->where('c.id=:curso')
+            ->getParameter('curso',$idCurso);
+
+        if($qb!=null)
+            $qb=$qb->getQuery();
+            return null;
 
         $qb=$qb->getResult()[0];
         $curso->setId($idCurso);
